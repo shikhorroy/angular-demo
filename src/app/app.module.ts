@@ -3,14 +3,24 @@ import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {ServerComponent} from './server/server.component';
+import {MatTableComponent} from './mat-table/mat-table.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ServerComponent
+    ServerComponent,
+    MatTableComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    MatFormFieldModule,
+    MatTableModule,
+    MatPaginatorModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

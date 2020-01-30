@@ -1,0 +1,27 @@
+<!--<mat-form-field>-->
+<!--  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">-->
+<!--</mat-form-field>-->
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort border="1">
+
+    <ng-container *ngFor="let key of displayedColumns;" matColumnDef="{{key}}">
+      <th mat-header-cell
+          width="{{getColumnWidth(columnSchema[key].width)}}"
+          class="text-align-center"
+          *matHeaderCellDef>
+        {{columnSchema[key].name ? columnSchema[key].name : ''}}
+      </th>
+
+      <td mat-cell *matCellDef="let row"
+          class="{{getTextAlignCSSClass(columnSchema[key].align)}}">
+        {{row[key]}}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" [attr.aria-colspan]="2"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
