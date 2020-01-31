@@ -5,4 +5,9 @@ import {Component} from '@angular/core';
   templateUrl: './server.component.html'
 })
 export class ServerComponent {
+  shouldDisabled = true;
+
+  constructor() {
+    setTimeout(() => this.shouldDisabled = false, 2000);
+  }
 }
