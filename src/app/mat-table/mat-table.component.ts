@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import {MatTableUtils} from './mat-table.utils';
 
 /** Constants used to fill up our data base. */
 const COLORS: string[] = [
@@ -63,6 +64,7 @@ const columnSchema = {
   templateUrl: 'mat-table.component.html',
 })
 export class MatTableComponent implements OnInit {
+  matTableUtils: MatTableUtils;
   displayedColumns: string[] = this.getDisplayedColumns();
   dataSource: MatTableDataSource<{}>;
   columnSchema: {};
@@ -71,6 +73,7 @@ export class MatTableComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor() {
+    this.matTableUtils = new MatTableUtils();
     // Create 100 users
     const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
 
@@ -97,17 +100,6 @@ export class MatTableComponent implements OnInit {
     list.forEach((v) => returnList.push(v.name));
 
     return returnList;
-  }
-
-  getTextAlignCSSClass(align: string) {
-    if (!align || align === 'center') {
-      return 'text-align-center';
-    }
-    return align === 'right' ? 'text-align-right' : 'text-align-left';
-  }
-
-  getColumnWidth(width) {
-    return width ? width : '25%';
   }
 
   ngOnInit() {
