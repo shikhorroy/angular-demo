@@ -8,12 +8,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { TestComponent } from './test/test.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ServerComponent,
-    MatTableComponent
+    MatTableComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,

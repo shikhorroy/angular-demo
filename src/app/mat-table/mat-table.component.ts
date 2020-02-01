@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
@@ -14,47 +14,6 @@ const NAMES: string[] = [
   'Isabella', 'Jasper', 'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'
 ];
 
-const columnSchema = {
-  id: {
-    name: 'ID',
-    width: '2%',
-    align: 'right',
-    hide: false,
-    order: 1,
-    mergeHeader: 'Merger 1',
-    colSpan: 2
-  },
-  name: {
-    name: 'Name',
-    width: '25%',
-    align: 'right',
-    hide: false,
-    order: 2,
-    mergeHeader: 'Merger 1'
-  },
-  progress: {
-    name: 'Progress',
-    width: '25%',
-    align: 'left',
-    hide: true,
-    order: 1
-  },
-  color: {
-    name: 'Color',
-    width: '10%',
-    align: 'right',
-    hide: true,
-    order: 10
-  },
-  blank: {
-    name: '-',
-    width: '10%',
-    align: 'right',
-    hide: true,
-    order: 40
-  }
-};
-
 /**
  * @title Data table with sorting, pagination, and filtering.
  */
@@ -64,30 +23,29 @@ const columnSchema = {
   templateUrl: 'mat-table.component.html',
 })
 export class MatTableComponent implements OnInit {
+
+  @Input()
+  schema: {};
+
+  displayedColumns: string[];
   matTableUtils: MatTableUtils;
-  displayedColumns: string[] = this.getDisplayedColumns();
   dataSource: MatTableDataSource<{}>;
-  columnSchema: {};
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor() {
     this.matTableUtils = new MatTableUtils();
-    // Create 100 users
     const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
-
-    // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(users);
-    this.columnSchema = columnSchema;
   }
 
   getDisplayedColumns() {
     const list = [];
-    const columns = Object.keys(columnSchema);
+    const columns = Object.keys(this.schema);
 
     columns.forEach((columnName) => {
-      const columnObj = columnSchema[columnName];
+      const columnObj = this.schema[columnName];
       if (columnObj.order) {
         list.push({order: columnObj.order, name: columnName});
       } else {
@@ -103,8 +61,9 @@ export class MatTableComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+    this.displayedColumns = this.getDisplayedColumns();
   }
 }
 
