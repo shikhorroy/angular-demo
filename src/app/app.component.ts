@@ -20,7 +20,7 @@ export class AppComponent {
     name: {
       name: 'Name',
       width: '25%',
-      align: 'right',
+      align: 'left',
       hide: false,
       order: 2,
       mergeHeader: 'Merger 1'
@@ -28,14 +28,14 @@ export class AppComponent {
     progress: {
       name: 'Progress',
       width: '25%',
-      align: 'left',
+      align: 'right',
       hide: true,
       order: 1
     },
     color: {
       name: 'Color',
       width: '10%',
-      align: 'right',
+      align: 'left',
       hide: true,
       order: 10
     },
