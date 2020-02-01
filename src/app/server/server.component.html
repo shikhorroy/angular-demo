@@ -1,4 +1,9 @@
 <h1>Welcome To Angular Component!</h1>
 
-<input type="button" value="Click" [disabled]="shouldDisabled">
+<input type="button" value="Click" [disabled]="shouldDisabled"
+       (click)="addNumValue()"/>
 <hr/>
+<div *ngFor="let n of numList"
+     [ngStyle]="{backgroundColor: getBGColor()}">
+  {{n}}
+</div>
