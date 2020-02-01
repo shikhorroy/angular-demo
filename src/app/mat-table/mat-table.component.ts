@@ -27,15 +27,15 @@ export class MatTableComponent implements OnInit {
   @Input()
   schema: {};
 
+  utility: MatTableUtils;
   displayedColumns: string[];
-  matTableUtils: MatTableUtils;
   dataSource: MatTableDataSource<{}>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor() {
-    this.matTableUtils = new MatTableUtils();
+    this.utility = new MatTableUtils();
     const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
     this.dataSource = new MatTableDataSource(users);
   }

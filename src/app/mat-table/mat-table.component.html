@@ -7,14 +7,14 @@
 
     <ng-container *ngFor="let key of displayedColumns;" matColumnDef="{{key}}">
       <th mat-header-cell
-          width="{{matTableUtils.getColumnWidth(schema[key].width)}}"
+          width="{{utility.getColumnWidth(schema[key].width)}}"
           class="text-align-center"
           *matHeaderCellDef>
         {{schema[key].name ? schema[key].name : ''}}
       </th>
 
       <td mat-cell *matCellDef="let row"
-          class="{{matTableUtils.getTextAlignCSSClass(schema[key].align)}}">
+          class="{{utility.getTextAlignCSSClass(schema[key].align)}}">
         {{row[key]}}
       </td>
     </ng-container>
